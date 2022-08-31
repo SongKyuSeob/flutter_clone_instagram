@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
+import 'package:flutter_clone_instagram/src/pages/home.dart';
 import 'package:get/get.dart';
 
 class App extends GetView<BottomNavController> {
@@ -12,11 +13,10 @@ class App extends GetView<BottomNavController> {
       child: Obx(
         ()=> Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(),
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
-              Container(child: Center(child: Text('HOME')),),
+              const Home(),
               Container(child: Center(child: Text('SEARCH')),),
               Container(child: Center(child: Text('UPLOAD')),),
               Container(child: Center(child: Text('ACTIVITY')),),
@@ -63,9 +63,7 @@ class App extends GetView<BottomNavController> {
           ),
         ),
       ),
-      onWillPop: () async {
-        return false;
-      },
+      onWillPop: controller.willPopAction,
     );
   }
 }
